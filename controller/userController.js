@@ -2,22 +2,20 @@ import userModel from "../models/user.model.js";
 
 export const getUserData = async (req, res) => {
   try {
-    const { userId } = req.body
-    const user = await userModel.findById(userId)
-
-    if(!user){
-        return res.json({ success: false, message: 'user not found' });
+    const userId = req.userId;
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
     res.json({
       success: true,
-      userData:{
-        username: user.name,
-        isVeriisVerified: user.isVeriisVerified
+      userData: {
+        username: user.username,
+        isVerified: user.isVerified,
+        email: user.email
       }
-    })
-
-
+    });
   } catch (error) {
-    return res.json({ success: false, message: error.message });
+    return res.status(500).json({ success: false, message: error.message });
   }
 };

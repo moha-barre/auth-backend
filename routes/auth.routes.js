@@ -9,7 +9,7 @@ authRouter.post('/login', login)
 authRouter.post('/logout', logOut)
 authRouter.post('/send-verify-otp', userAuthFun, sendVerifyOTP)
 authRouter.post('/verify-account', userAuthFun, verifyEmailOtp)
-authRouter.post('/is-auth', isAuthanticated)
+authRouter.post('/is-auth', userAuthFun ,isAuthanticated)
 authRouter.post('/send-reset-otp',resetOtp)
 authRouter.post('/reset-password',  resetingPass)
 
